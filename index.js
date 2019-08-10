@@ -12,7 +12,7 @@ var roomno = 1;
 io.on('connection', function (socket) {
     //Increase roomno 2 clients are present in a room.
     
-    if (io.nsps['/'].adapter.rooms["room-" + roomno] && io.nsps['/'].adapter.rooms["room-" + roomno].length > 1)
+    if (io.nsps['/'].adapter.rooms["room-" + roomno] && io.nsps['/'].adapter.rooms["room-" + roomno].length > 100)
         roomno++;
     socket.join("room-" + roomno);
     
