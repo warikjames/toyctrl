@@ -20,7 +20,7 @@ io.on('connection', function (socket) {
     io.sockets.in("room-" + roomno).emit('startmessage', "Connected to ToyCtrl Room#: " + roomno);
     
     socket.on('message1', function (txt) {
-        io.sockets.in("room-"+ roomno).emit('message1', txt, socket.id);
+        io.sockets.in("room-"+ roomno).emit('message1', txt);
         //io.sockets.in("room-" + roomno).emit('message1', txt);
     });
     
