@@ -32,7 +32,7 @@ app.get('/', function (req, res) {
 //    });
 
     
-});
+//});
 
 /* Namespace */
 //var nsp = io.of('/ctrl');
