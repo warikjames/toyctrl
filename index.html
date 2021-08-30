@@ -34,7 +34,7 @@
             });
 
         socket.on('message1',function(data){
-          $('#messages').append($('<li>').text(data));
+          $('#message').append($('<li>').text(data));
           console.log(data);
       });
         /* 2 in a Room */
@@ -50,12 +50,6 @@
 //        });
         /* Namespace end */
         
-//        $('form').submit(function() {
-//            //socket.of( '/my-namespace' ).emit( 'hi', 'blah blah');
-//            socket.emit('message', $('#m').val());
-//            $('#m').val('');
-//            return false;
-//        });
         
        
        $('form').submit(function() {
@@ -67,14 +61,8 @@
            $('#messages').append($('<li>').text(msg));
            window.scrollTo(0, document.body.scrollHeight);
        });
-       socket.on('greetings', function(msg) {
-           $('#messages').append($('<li>').text(msg));
-           window.scrollTo(0, document.body.scrollHeight);
-       });
-       socket.on('message1', function(msg) {
-           $('#messages').append($('<li>').text(msg));
-           window.scrollTo(0, document.body.scrollHeight);
-       });
+       
+       
     });
 </script>
 </body>
