@@ -8,21 +8,21 @@ app.get('/', function (req, res) {
 });
 
 /* 2 connected to a room*/
-var roomno = 1;
-io.on('connection', function (socket) {
-    //Increase roomno 2 clients are present in a room.
+// var roomno = 1;
+// io.on('connection', function (socket) {
+//     //Increase roomno 2 clients are present in a room.
     
-    if (io.nsps['/'].adapter.rooms["room-" + roomno] && io.nsps['/'].adapter.rooms["room-" + roomno].length > 100)
-        roomno++;
-    socket.join("room-" + roomno);
+//     if (io.nsps['/'].adapter.rooms["room-" + roomno] && io.nsps['/'].adapter.rooms["room-" + roomno].length > 100)
+//         roomno++;
+//     socket.join("room-" + roomno);
     
-    //Send this event to everyone in the room.
-    io.sockets.in("room-" + roomno).emit('startmessage', "Connected to ToyCtrl Room#: " + roomno);
+//     //Send this event to everyone in the room.
+//     io.sockets.in("room-" + roomno).emit('startmessage', "Connected to ToyCtrl Room#: " + roomno);
     
-    socket.on('message1', function (txt) {
-        io.sockets.in("room-"+ roomno).emit('message1', txt);
-        //io.sockets.in("room-" + roomno).emit('message1', txt);
-    });
+//     socket.on('message1', function (txt) {
+//         io.sockets.in("room-"+ roomno).emit('message1', txt);
+//         //io.sockets.in("room-" + roomno).emit('message1', txt);
+//     });
     
 
 //    socket.join("edibleplastyc-toyctrl");
@@ -48,27 +48,27 @@ io.on('connection', function (socket) {
 
 
 ///* default */
-//sio.on('connection', function(socket){
-//    
-//    sio.emit( 'greetings', 'Hello from the server: ' + socket.id , socket.id );
-//    
-//    //sio.emit('message',  'User: ' + socket.id + ' Connected');
-//    
-//    // listen for the 'message' event
-//    socket.on('message', function(txt){
-//        sio.emit('message', txt, socket.id);
-//    });
-//    
-//    socket.on('disconnect', function() {
-//      //console.log('Got disconnect!');
-//        sio.emit('message',  'User: ' + socket.id + ' Disconnected');
-//   });
-//    
-//    socket.on('message1', function(txt){
-//        sio.emit('message1', txt, socket.id);
-//    });
-//
-//});
+io.on('connection', function(socket){
+   
+   io.emit( 'greetings', 'Hello from the server: ' + socket.id , socket.id );
+   
+   io.emit('message',  'User: ' + socket.id + ' Connected');
+   
+   // listen for the 'message' event
+   socket.on('message', function(txt){
+       io.emit('message', txt, socket.id);
+   });
+   
+   socket.on('disconnect', function() {
+     console.log('Got disconnect!');
+       io.emit('message',  'User: ' + socket.id + ' Disconnected');
+  });
+   
+   socket.on('message1', function(txt){
+       io.emit('message1', txt, socket.id);
+   });
+
+});
 
 http.listen(port, function () {
     console.log('listening on *:' + port);
