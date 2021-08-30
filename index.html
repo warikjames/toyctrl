@@ -26,8 +26,9 @@
 <script>
     $(function() {
         /* 2 in a Room */
-        var socket = io('https://test-toy.herokuapp.com/');
-        
+//         var socket = io('https://test-toy.herokuapp.com/');
+        var socket = io();
+      
         socket.on('message', function(data) {
                 console.log(data);
             });
@@ -56,7 +57,7 @@
            return false;
        });
         
-       var socket = io();
+       
        $('form').submit(function() {
            socket.emit('message', $('#m').val());
            $('#m').val('');
